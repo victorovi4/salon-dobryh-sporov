@@ -318,6 +318,23 @@ img { max-width: 100%; }
 .card .excerpt { color: var(--ink-soft); font-size: 15px; margin: 0 0 16px; flex: 1; }
 .card .meta { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--ink-faint); }
 .card .more { color: var(--accent); font-weight: 700; }
+.lens-block {
+  background: rgba(255,255,255,.52);
+  border: 1px solid rgba(36,32,28,.08);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin: 0 0 12px;
+}
+.lens-block h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent);
+}
+.lens-block p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+.lens-block ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 14px; }
+.lens-block li + li { margin-top: 3px; }
 
 /* ===== Essay page ===== */
 .essay-page article.prose {
