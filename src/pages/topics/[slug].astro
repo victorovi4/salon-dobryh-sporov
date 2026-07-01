@@ -18,7 +18,7 @@ const essays = (await getCollection('essays'))
   .sort((a, b) => a.data.styleLabel.localeCompare(b.data.styleLabel));
 ---
 
-<Base title={`${topic.data.title} — Салон добрых споров`} description={topic.data.summary}>
+<Base title={`${topic.data.title} — Причинили`} description={topic.data.summary}>
   <div class="page-head">
     <h1>{topic.data.title}</h1>
     <p>{topic.data.summary}</p>
