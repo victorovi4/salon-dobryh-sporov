@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const topics = await getCollection('topics');
+---
+
+<Base title="Выпуски — Салон добрых споров" description="Темы и выпуски Салона добрых споров.">
+  <div class="page-head">
+    <h1>Выпуски</h1>
+    <p>Каждый выпуск — один бурный конфликт из профессионального чата, раскрытый пятью литературными голосами.</p>
+  </div>
+
+  <div class="grid">
+    {topics.map(topic => (
+      <a class="card" href={`/topics/${topic.id}/`}>
+        <div class="style-tag">{topic.data.messageCount} сообщений · {topic.data.participantCount} участников</div>
+        <h3>{topic.data.title}</h3>
+        <p class="excerpt">{topic.data.summary}</p>
+        <div class="meta"><span class="more">Читать выпуск →</span></div>
+      </a>
+    ))}
+  </div>
+</Base>

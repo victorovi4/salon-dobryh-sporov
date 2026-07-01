@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const styles = (await getCollection('styles')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Base title="Стили — Салон добрых споров" description="Литературные голоса Салона добрых споров.">
+  <div class="page-head">
+    <h1>Стили</h1>
+    <p>Каждый конфликт рассказывается несколькими голосами. Выберите интонацию — и увидите тему с новой стороны.</p>
+  </div>
+
+  <div class="grid">
+    {styles.map(style => {
+      const essays = style.data.examples;
+      return (
+        <article class="card">
+          <div class="style-tag">Голос · {String(style.data.order).padStart(2, '0')}</div>
+          <h3>{style.data.name}</h3>
+          <p class="excerpt">{style.data.description}</p>
+          <p class="excerpt" style="font-size:13px;color:var(--ink-faint);">Лучше всего для: {style.data.bestFor}</p>
+          {essays.length > 0 && (
+            <div class="meta">
+              <span>{essays.join(', ')}</span>
+            </div>
+          )}
+        </article>
+      );
+    })}
+  </div>
+</Base>

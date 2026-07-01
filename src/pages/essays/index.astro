@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import EssayCard from '../../components/EssayCard.astro';
+
+const essays = (await getCollection('essays')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Base title="Очерки — Салон добрых споров" description="Все литературные очерки Салона добрых споров.">
+  <div class="page-head">
+    <h1>Очерки</h1>
+    <p>Короткие литературные тексты о конфликтах НКО-сектора — от чеховской бытовой сцены до метаиронии Пелевина.</p>
+  </div>
+
+  <div class="grid">
+    {essays.map(essay => (
+      <EssayCard
+        href={`/essays/${essay.id}/`}
+        styleLabel={essay.data.styleLabel}
+        title={essay.data.title}
+        excerpt={essay.data.excerpt}
+        date={essay.data.date}
+      />
+    ))}
+  </div>
+</Base>

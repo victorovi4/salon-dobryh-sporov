@@ -1,0 +1,18 @@
+---
+const nav = [
+  { href: '/topics/', label: 'Выпуски' },
+  { href: '/styles/', label: 'Стили' },
+  { href: '/essays/', label: 'Очерки' },
+  { href: '/about/', label: 'О проекте' },
+];
+const path = Astro.url.pathname;
+---
+
+<header class="top">
+  <a href="/" class="logo">Салон <i>добрых</i> споров</a>
+  <nav class="menu">
+    {nav.map(item => (
+      <a href={item.href} class={path === item.href ? 'active' : ''}>{item.label}</a>
+    ))}
+  </nav>
+</header>

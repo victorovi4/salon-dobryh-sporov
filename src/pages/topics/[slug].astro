@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const topics = await getCollection('topics');
+  return topics.map(topic => ({
+    params: { slug: topic.id },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+const { Content } = await render(topic);
+
+const essays = (await getCollection('essays'))
+  .filter(e => e.data.topic === topic.id)
+  .sort((a, b) => a.data.styleLabel.localeCompare(b.data.styleLabel));
+---
+
+<Base title={`${topic.data.title} — Салон добрых споров`} description={topic.data.summary}>
+  <div class="page-head">
+    <h1>{topic.data.title}</h1>
+    <p>{topic.data.summary}</p>
+  </div>
+
+  <div class="topic-meta">
+    <div class="stat"><span class="num">{topic.data.messageCount}</span><span class="lbl">сообщений в чате</span></div>
+    <div class="stat"><span class="num">{topic.data.participantCount}</span><span class="lbl">участников</span></div>
+    <div class="stat"><span class="num">{essays.length}</span><span class="lbl">очерков в выпуске</span></div>
+    <div class="stat"><span class="num">{topic.data.periodEnd}</span><span class="lbl">окончание обсуждения</span></div>
+  </div>
+
+  <section class="prose" style="max-width:760px;margin:0 auto;">
+    <Content />
+  </section>
+
+  <section class="other-voices">
+    <h2>Почему мы выбрали эту тему</h2>
+    <p style="font-size:18px;color:var(--ink-soft);max-width:760px;">{topic.data.whyChosen}</p>
+  </section>
+
+  <section class="other-voices">
+    <h2>Позиции конфликта</h2>
+    <div class="conflict-lines">
+      {topic.data.conflictLines.map(line => (
+        <div class="conflict">
+          <div class="side">{line.side}</div>
+          <p>{line.position}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {essays.length > 0 && (
+    <section class="other-voices">
+      <h2>Очерки этого выпуска</h2>
+      <div class="grid">
+        {essays.map(essay => (
+          <a class="card" href={`/essays/${essay.id}/`}>
+            <div class="style-tag">{essay.data.styleLabel}</div>
+            <h3>{essay.data.title}</h3>
+            <p class="excerpt">{essay.data.excerpt}</p>
+            <div class="meta"><span class="more">Читать →</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</Base>

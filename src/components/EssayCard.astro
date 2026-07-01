@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  styleLabel: string;
+  title: string;
+  excerpt: string;
+  date?: Date;
+}
+const { href, styleLabel, title, excerpt, date } = Astro.props;
+const dateStr = date
+  ? date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+  : '';
+---
+
+<a class="card" href={href}>
+  <div class="style-tag">{styleLabel}</div>
+  <h3>{title}</h3>
+  <p class="excerpt">{excerpt}</p>
+  <div class="meta">
+    <span>{dateStr}</span>
+    <span class="more">Читать →</span>
+  </div>
+</a>

@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const essays = (await getCollection('essays')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const recent = essays.slice(0, 6);
+
+const topics = [
+  'платформы', 'доноры', 'фонды', 'бизнес', 'власть интерфейса',
+  'доброта как сервис', 'фандрайзинг', 'партнёрство или подряд', 'гранты',
+  'выгорание', 'корпоративное волонтёрство'
+];
+const tickerText = topics.join(' • ') + ' • ';
+---
+
+<Base title="Салон добрых споров" description="Медиа, где серьёзные темы НКО-сектора превращаются в короткие литературные очерки: от тихой чеховской сцены до метаиронии Пелевина.">
+<section class="hero">
+  <div>
+    <h1>Один конфликт.<br/>Пять голосов.</h1>
+    <p class="lead">Медиа, где серьёзные темы НКО-сектора превращаются в короткие литературные очерки: от тихой чеховской сцены до метаиронии Пелевина.</p>
+    <div class="cta">
+      <a href="/essays/" class="btn primary">Читать подборку</a>
+      <a href="/styles/" class="btn secondary">Выбрать стиль</a>
+    </div>
+  </div>
+  <div class="stage">
+    <article class="bubble b1">
+      <div class="persona">Чехов</div>
+      <h3>Кнопка на экране</h3>
+      <p>Она нажала — и ей стало неловко, будто в дом вошёл полезный человек.</p>
+    </article>
+    <article class="bubble b2">
+      <div class="persona">Пелевин</div>
+      <h3>CTR сострадания</h3>
+      <p>Мир становился лучше не сразу. Сначала лучше становились метрики.</p>
+    </article>
+    <article class="bubble b3">
+      <div class="persona">Достоевский</div>
+      <h3>Невидимый хозяин</h3>
+      <p>Все хотят добра. В том-то и ужас: между ними возникает власть.</p>
+    </article>
+  </div>
+</section>
+
+<div class="ticker">
+  <span class="track">{tickerText}{tickerText}{tickerText}</span>
+</div>
+
+<section class="sections">
+  <div class="panel">
+    <h2>Свежие очерки</h2>
+    <div class="essay-list">
+      {recent.map(essay => (
+        <a class="essay" href={`/essays/${essay.id}/`}>
+          <div class="style">{essay.data.styleLabel}</div>
+          <h4>{essay.data.title}</h4>
+          <div class="arrow">→</div>
+        </a>
+      ))}
+    </div>
+  </div>
+  <aside class="panel">
+    <h2>Стиль дня</h2>
+    <div class="quote">«Добро не исчезает. Оно просто проходит модерацию»</div>
+    <div class="switch">
+      <button>ирония</button>
+      <button>сцена</button>
+      <button>поэма</button>
+      <button>разбор</button>
+      <button>сатира</button>
+    </div>
+  </aside>
+</section>
+
+<section style="margin-top: 48px;">
+  <h2 class="section-title">Как это работает</h2>
+  <div class="steps">
+    <div class="step"><div class="num">01</div><div class="t">Чат обсуждает</div></div>
+    <div class="step"><div class="num">02</div><div class="t">AI-редактор находит бурную тему</div></div>
+    <div class="step"><div class="num">03</div><div class="t">Выбирает литературный голос</div></div>
+    <div class="step"><div class="num">04</div><div class="t">Пишет очерк</div></div>
+    <div class="step"><div class="num">05</div><div class="t">Публикует на сайт и в Telegram</div></div>
+  </div>
+</section>
+
+<section class="subscribe">
+  <h3>Новый очерк — каждый день</h3>
+  <p>Подпишитесь на Telegram-канал: темы НКО-сектора, которых вы не найдёте в отчётах.</p>
+  <a href="https://t.me/" target="_blank" rel="noopener" class="btn primary" style="background:#ffd7c2;color:#24201c">Подписаться в Telegram</a>
+</section>
+</Base>
