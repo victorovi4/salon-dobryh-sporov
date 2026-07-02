@@ -1,0 +1,58 @@
+name: Content / editorial task
+about: Задача на тему, очерк, оптику, публикацию или редактуру
+labels: ["type:content", "status:triage"]
+body:
+  - type: textarea
+    id: source
+    attributes:
+      label: Источник / материал
+      description: Откуда берём фактуру? Не публикуй приватные сырые логи в issue без анонимизации.
+      placeholder: Ссылка на безопасный документ, краткое описание лога, тема из мониторинга.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Проблематика
+      description: Одна связанная проблема, которую превращаем в выпуск/очерк.
+      placeholder: Не синопсис всего чата, а одна ось конфликта.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: optics
+    attributes:
+      label: Нужные оптики
+      options:
+        - label: Чехов
+        - label: Толстой
+        - label: Достоевский
+        - label: Пушкин
+        - label: Пелевин
+        - label: Ильф и Петров
+        - label: Деловая публицистика
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Ограничения и приватность
+      value: |
+        - [ ] Не публиковать имена, usernames, телефоны, email и прямые идентификаторы
+        - [ ] Использовать роли/парафразы вместо сырого закрытого лога
+        - [ ] Нужна редакторская проверка перед публикацией
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерии приёмки
+      value: |
+        - [ ] Текст опирается на исходную проблематику, а не на выдуманную фабулу
+        - [ ] Каждая оптика извлекает свой слой, а не пересказывает один синопсис
+        - [ ] Нет приватных идентификаторов
+        - [ ] Контентные коллекции Astro валидны
+        - [ ] `npm run build` проходит
+    validations:
+      required: true

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Быстрая редакторская заметка
+    url: https://github.com/victorovi4/salon-dobryh-sporov/issues/new
+    about: Для коротких заметок без шаблона можно открыть blank issue.
