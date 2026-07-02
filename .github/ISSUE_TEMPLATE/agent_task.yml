@@ -1,0 +1,69 @@
+name: Agent task
+about: Задача для Hermes/Codex/GLM с явным планом и QA
+labels: ["agent:hermes", "status:triage"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: Что должен сделать агент в одном результате?
+      placeholder: |
+        Например: реализовать endpoint генерации аудио и открыть PR.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Ссылки на issue, файлы, ТЗ, решения, ограничения.
+    validations:
+      required: true
+
+  - type: textarea
+    id: plan
+    attributes:
+      label: Proposed plan
+      description: Короткий план. Агент может уточнить перед стартом.
+      placeholder: |
+        1. Inspect ...
+        2. Implement ...
+        3. Test ...
+        4. Open PR ...
+
+  - type: textarea
+    id: qa
+    attributes:
+      label: Required QA
+      value: |
+        - [ ] Inspect relevant files before editing
+        - [ ] Run `npm run build`
+        - [ ] Run related tests/linters if present
+        - [ ] Attach screenshots or logs for UI changes
+        - [ ] Open PR and link this issue
+    validations:
+      required: true
+
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Preferred agent
+      options:
+        - agent:hermes
+        - agent:codex
+        - agent:glm
+        - agent:human
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - priority:p0
+        - priority:p1
+        - priority:p2
+        - priority:p3
+    validations:
+      required: true

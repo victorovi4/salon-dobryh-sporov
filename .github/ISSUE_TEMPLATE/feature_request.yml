@@ -1,0 +1,77 @@
+name: Feature request
+about: Новая продуктовая или инженерная возможность
+labels: ["type:feature", "status:triage"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Цель
+      description: Что должно стать возможно для пользователя, редактора или системы?
+      placeholder: |
+        Например: пользователь может слушать очерк в голосе выбранной литературной оптики.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Контекст
+      description: Почему это нужно сейчас? Есть ли связанные issue, документы, решения?
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope / что входит
+      placeholder: |
+        - API endpoint ...
+        - UI на странице ...
+        - сохранение поля ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Что не входит
+      placeholder: |
+        Например: voice cloning, кастомный плеер, подкаст-формат.
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерии приёмки
+      placeholder: |
+        - [ ] ...
+        - [ ] `npm run build` проходит
+        - [ ] Добавлена/обновлена документация, если нужна
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Область
+      options:
+        - area:frontend
+        - area:backend
+        - area:telegram
+        - area:audio
+        - area:cms
+        - area:content-pipeline
+        - area:design
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Приоритет
+      options:
+        - priority:p0
+        - priority:p1
+        - priority:p2
+        - priority:p3
+    validations:
+      required: true

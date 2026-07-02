@@ -1,0 +1,84 @@
+name: Bug report
+about: Сообщить о дефекте или регрессии
+labels: ["type:bug", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо. Заполняй коротко, но так, чтобы агент или разработчик мог воспроизвести проблему.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Что сломано?
+      description: Кратко опиши дефект и где он виден.
+      placeholder: |
+        Например: на странице очерка не отображается аудиоплеер, хотя audioUrl есть.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Как воспроизвести?
+      description: Шаги, ссылка, команда или сценарий.
+      placeholder: |
+        1. Открыть ...
+        2. Нажать ...
+        3. Увидеть ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое поведение
+      placeholder: Что должно происходить вместо бага?
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Доказательства
+      description: Скриншоты, логи, ссылки, фрагменты ошибок.
+      placeholder: Вставь скриншот, URL, console output или build log.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Область
+      options:
+        - area:frontend
+        - area:backend
+        - area:telegram
+        - area:audio
+        - area:cms
+        - area:content-pipeline
+        - area:design
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Приоритет
+      options:
+        - priority:p0
+        - priority:p1
+        - priority:p2
+        - priority:p3
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерии приёмки
+      value: |
+        - [ ] Баг воспроизведён до исправления
+        - [ ] Исправление внесено
+        - [ ] `npm run build` проходит
+        - [ ] Проверено вручную в затронутом сценарии
+    validations:
+      required: true
