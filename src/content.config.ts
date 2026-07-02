@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { OPTIC_KEYS } from './config/voices';
 
 // ===== Essays =====
 const essays = defineCollection({
@@ -12,6 +13,9 @@ const essays = defineCollection({
     excerpt: z.string(),
     date: z.coerce.date(),
     featured: z.boolean().default(false),
+    optic: z.enum(OPTIC_KEYS).optional(),
+    audioUrl: z.string().url().optional(),
+    durationSec: z.number().int().positive().optional(),
   }),
 });
 
