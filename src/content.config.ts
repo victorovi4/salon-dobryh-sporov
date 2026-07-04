@@ -14,7 +14,7 @@ const essays = defineCollection({
     date: z.coerce.date(),
     featured: z.boolean().default(false),
     optic: z.enum(OPTIC_KEYS).optional(),
-    audioUrl: z.string().url().optional(),
+    audioUrl: z.string().optional(),
     durationSec: z.number().int().positive().optional(),
   }),
 });

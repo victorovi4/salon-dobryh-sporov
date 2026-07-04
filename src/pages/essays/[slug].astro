@@ -29,6 +29,17 @@ const dateStr = essay.data.date.toLocaleDateString('ru-RU', {
       <h1>{essay.data.title}</h1>
       <p class="desc">{essay.data.excerpt}</p>
       <div class="date">{dateStr}</div>
+      {essay.data.audioUrl && (
+        <div class="audio-card" aria-label="Аудиоверсия очерка">
+          <div class="audio-card__label">Аудиоверсия</div>
+          <audio controls preload="metadata" src={essay.data.audioUrl}></audio>
+          {essay.data.durationSec && (
+            <div class="audio-card__meta">
+              Длительность: {Math.floor(essay.data.durationSec / 60)}:{String(essay.data.durationSec % 60).padStart(2, '0')}
+            </div>
+          )}
+        </div>
+      )}
     </header>
 
     <Content />

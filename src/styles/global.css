@@ -410,6 +410,30 @@ img { max-width: 100%; }
 }
 .other-voices .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 
+/* ===== Audio player ===== */
+.audio-card {
+  margin: 28px auto 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  max-width: 720px;
+}
+.audio-card__label {
+  margin-bottom: 12px;
+  color: var(--ink-faint);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.audio-card audio { width: 100%; display: block; }
+.audio-card__meta {
+  margin-top: 10px;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
 /* ===== Topic page ===== */
 .topic-meta {
   display: grid;
