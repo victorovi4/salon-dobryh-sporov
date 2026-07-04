@@ -50,13 +50,13 @@ export const OPTIC_VOICES: Record<OpticKey, OpticVoice> = {
   },
   tolstoy: {
     label: 'Толстой',
-    voiceId: 'TBD',
-    style: 'неторопливый, весомый, размеренный',
+    voiceId: '9fof2VPjlqYRNgXCv1cT',
+    style: 'сухой, уставший, несладкий, без театральности; нравственный реализм',
     elevenLabs: {
       modelId: 'eleven_multilingual_v2',
-      stability: 0.78,
-      similarityBoost: 0.76,
-      style: 0.12,
+      stability: 0.82,
+      similarityBoost: 0.78,
+      style: 0.08,
       useSpeakerBoost: true,
     },
   },
