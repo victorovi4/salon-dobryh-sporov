@@ -6,6 +6,8 @@ topic: "kto-vladeet-dobrom"
 excerpt: "Пушкинская миниатюра о том, как благотворительный путь становится чужой дорогой, если право впускать остаётся у платформы."
 date: 2026-06-28
 featured: true
+audioUrl: "/audio/kto-derzhit-vhod-pushkin.mp3"
+durationSec: 74
 ---
 
 > Не спорь, мой друг: добро — не клад,
