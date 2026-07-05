@@ -6,6 +6,8 @@ topic: "kto-vladeet-dobrom"
 excerpt: "Все хотят добра, но никто не хочет признать власть, которая возникает там, где один ждёт допуска, а другой выбирает."
 date: 2026-06-28
 featured: true
+audioUrl: "/audio/nevidimyj-hozyain-dostoevsky.mp3"
+durationSec: 885
 ---
 
 Позвольте, я начну не с платформы. Платформа тут ни при чём — вот что страшно.
