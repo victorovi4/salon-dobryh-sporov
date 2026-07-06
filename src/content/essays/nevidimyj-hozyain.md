@@ -7,7 +7,7 @@ excerpt: "Все хотят добра, но никто не хочет приз
 date: 2026-06-28
 featured: true
 audioUrl: "/audio/nevidimyj-hozyain-dostoevsky.mp3"
-durationSec: 885
+durationSec: 867
 ---
 
 Позвольте, я начну не с платформы. Платформа тут ни при чём — вот что страшно.
