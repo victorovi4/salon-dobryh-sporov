@@ -7,7 +7,7 @@ excerpt: "Мир становился лучше не сразу. Сначала
 date: 2026-06-28
 featured: true
 audioUrl: "/audio/ctr-sostradaniya-pelevin.mp3"
-durationSec: 256
+durationSec: 255
 ---
 
 Вадим работал в НКО, хотя с каждым годом это всё меньше походило на работу с людьми.
