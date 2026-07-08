@@ -398,6 +398,34 @@ img { max-width: 100%; }
   margin: 1.5em 0;
 }
 
+.thanks-list {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0 30px;
+}
+
+.thanks-card {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.55);
+}
+
+.thanks-card strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.thanks-card span {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
 /* ===== Other voices ===== */
 .other-voices {
   margin-top: 56px;
