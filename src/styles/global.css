@@ -555,11 +555,18 @@ img { max-width: 100%; }
   border-radius: 4px;
 }
 
+.footer-logo-link {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
 .footer-org {
   font-size: 12px;
   color: var(--ink-faint);
   opacity: 0.8;
 }
+
+.footer-org a { color: inherit; }
 
 .section-title {
   font-size: 14px;
