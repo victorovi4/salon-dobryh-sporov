@@ -7,7 +7,7 @@ excerpt: "Из заседания чата, где участники учред
 date: 2026-06-30
 featured: true
 audioUrl: "/audio/kontora-dobryh-uslug-ilf-petrov.mp3"
-durationSec: 416
+durationSec: 410
 ---
 
 На третий день обсуждение в профессиональном чате приобрело законченный учрежденческий вид.
