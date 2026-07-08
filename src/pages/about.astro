@@ -37,12 +37,26 @@ const topicCount = (await getCollection('topics')).length;
     <h2>Цифры</h2>
     <p>Сейчас в «Причинили»: {essayCount} {essayCount === 1 ? 'очерк' : 'очерков'}, {topicCount} {topicCount === 1 ? 'выпуск' : 'выпусков'}.</p>
 
+    <h2>Команда проекта</h2>
+    <div class="team-grid">
+      <article class="team-card">
+        <img src="/team-yevgeniya-korytina.jpg" alt="Евгения Корытина" class="team-photo" loading="lazy" width="720" height="960" />
+        <div class="team-copy">
+          <strong>Евгения Корытина</strong>
+          <span>команда проекта «Причини добро»</span>
+        </div>
+      </article>
+      <article class="team-card">
+        <img src="/team-dmitry-ioffe.jpg" alt="Дмитрий Иоффе" class="team-photo" loading="lazy" width="720" height="960" />
+        <div class="team-copy">
+          <strong>Дмитрий Иоффе</strong>
+          <span>председатель МОО «Чистые Игры» и создатель <a href="https://grantorez.ru/" target="_blank" rel="noopener">grantorez.ru</a></span>
+        </div>
+      </article>
+    </div>
+
     <h2>Благодарности</h2>
     <div class="thanks-list">
-      <div class="thanks-card">
-        <strong>Дмитрий Иоффе</strong>
-        <span>председатель МОО «Чистые Игры» и создатель <a href="https://grantorez.ru/" target="_blank" rel="noopener">grantorez.ru</a></span>
-      </div>
       <div class="thanks-card">
         <strong>Владимир Клевинскис</strong>
         <span>за внимательное прослушивание, редакторскую проверку и помощь с качеством аудиоверсий</span>
