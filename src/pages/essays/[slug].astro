@@ -16,6 +16,10 @@ const { Content } = await render(essay);
 const others = (await getCollection('essays'))
   .filter(e => e.data.topic === essay.data.topic && e.id !== essay.id)
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const topic = (await getCollection('topics')).find(t => t.id === essay.data.topic);
+const siteUrl = 'https://prichinili.ru';
+const essayUrl = `${siteUrl}/essays/${essay.id}/`;
+const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(essayUrl)}&text=${encodeURIComponent(`«${essay.data.title}» — Причинили`)}`;
 
 const dateStr = essay.data.date.toLocaleDateString('ru-RU', {
   day: 'numeric', month: 'long', year: 'numeric'
@@ -44,7 +48,11 @@ const dateStr = essay.data.date.toLocaleDateString('ru-RU', {
 
     <Content />
 
-    <p style="margin-top:2em;"><a href="/essays/">← Все очерки</a></p>
+    <nav class="essay-actions" aria-label="Навигация по очерку">
+      {topic && <a href={`/topics/${topic.id}/`}>← К выпуску «{topic.data.title}»</a>}
+      <a href={shareUrl} target="_blank" rel="noopener">Поделиться в Telegram →</a>
+      <a href="/essays/">Все очерки →</a>
+    </nav>
   </article>
 
   {others.length > 0 && (

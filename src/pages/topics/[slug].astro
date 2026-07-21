@@ -16,6 +16,9 @@ const { Content } = await render(topic);
 const essays = (await getCollection('essays'))
   .filter(e => e.data.topic === topic.id)
   .sort((a, b) => a.data.styleLabel.localeCompare(b.data.styleLabel));
+const siteUrl = 'https://prichinili.ru';
+const topicUrl = `${siteUrl}/topics/${topic.id}/`;
+const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(topicUrl)}&text=${encodeURIComponent(`Выпуск «${topic.data.title}» — Причинили`)}`;
 ---
 
 <Base title={`${topic.data.title} — Причинили`} description={topic.data.summary}>
@@ -54,17 +57,40 @@ const essays = (await getCollection('essays'))
 
   {essays.length > 0 && (
     <section class="other-voices">
-      <h2>Очерки этого выпуска</h2>
-      <div class="grid">
-        {essays.map(essay => (
-          <a class="card" href={`/essays/${essay.id}/`}>
-            <div class="style-tag">{essay.data.styleLabel}</div>
-            <h3>{essay.data.title}</h3>
-            <p class="excerpt">{essay.data.excerpt}</p>
-            <div class="meta"><span class="more">Читать →</span></div>
-          </a>
-        ))}
-      </div>
+      <h2>{essays.length === 1 ? 'Очерк выпуска' : 'Очерки этого выпуска'}</h2>
+      {essays.length === 1 ? (
+        <a class="issue-hero" href={`/essays/${essays[0].id}/`}>
+          <div>
+            <div class="style-tag">{essays[0].data.styleLabel}</div>
+            <h3>{essays[0].data.title}</h3>
+            <p>{essays[0].data.excerpt}</p>
+          </div>
+          <span class="btn primary">Прочитать очерк →</span>
+        </a>
+      ) : (
+        <div class="grid">
+          {essays.map(essay => (
+            <a class="card" href={`/essays/${essay.id}/`}>
+              <div class="style-tag">{essay.data.styleLabel}</div>
+              <h3>{essay.data.title}</h3>
+              <p class="excerpt">{essay.data.excerpt}</p>
+              <div class="meta"><span class="more">Читать →</span></div>
+            </a>
+          ))}
+        </div>
+      )}
     </section>
   )}
+
+  <section class="issue-follow" aria-label="Подписка и распространение выпуска">
+    <div>
+      <div class="style-tag">Продолжение выпуска</div>
+      <h2>Следить за следующими очерками</h2>
+      <p>Новые тексты по этой теме появятся на сайте и в Telegram-канале.</p>
+    </div>
+    <div class="issue-follow__actions">
+      <a href="https://t.me/prichinili" target="_blank" rel="noopener" class="btn primary">Подписаться в Telegram</a>
+      <a href={shareUrl} target="_blank" rel="noopener" class="btn secondary">Поделиться выпуском</a>
+    </div>
+  </section>
 </Base>
