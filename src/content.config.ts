@@ -16,6 +16,11 @@ const essays = defineCollection({
     optic: z.enum(OPTIC_KEYS).optional(),
     audioUrl: z.string().optional(),
     durationSec: z.number().int().positive().optional(),
+    homeTopic: z.object({
+      title: z.string(),
+      question: z.string(),
+      tags: z.array(z.string()).min(1),
+    }).optional(),
   }),
 });
 

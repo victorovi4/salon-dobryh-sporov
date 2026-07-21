@@ -64,6 +64,15 @@ img { max-width: 100%; }
 }
 .logo i { font-family: var(--serif); font-weight: 400; }
 
+/* Убираем системную рамку после клика, но сохраняем заметный фокус для клавиатуры. */
+a:focus { outline: none; }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #386f9d;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 .menu { display: flex; gap: 8px; flex-wrap: wrap; }
 .menu a {
   padding: 9px 13px;
@@ -237,17 +246,24 @@ img { max-width: 100%; }
   line-height: 1.2;
   margin: 0 0 22px;
 }
+.topic-question {
+  margin: -8px 0 22px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.45;
+}
 .switch { display: flex; gap: 8px; flex-wrap: wrap; }
-.switch button {
+.switch button,
+.switch span {
   border: 1px solid var(--line);
   background: #fff;
   border-radius: 999px;
   padding: 8px 14px;
   font-size: 13px;
-  cursor: pointer;
   font-family: var(--sans);
   color: var(--ink-soft);
 }
+.switch button { cursor: pointer; }
 .switch button:hover { border-color: var(--ink-soft); }
 
 /* ===== How it works ===== */

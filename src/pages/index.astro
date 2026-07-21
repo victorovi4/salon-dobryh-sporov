@@ -7,8 +7,8 @@ const essays = (await getCollection('essays')).sort(
 );
 
 const recent = essays.slice(0, 7);
-
-const topics = [
+const homeTopic = essays[0]?.data.homeTopic;
+const topics = homeTopic?.tags ?? [
   'платформы', 'доноры', 'фонды', 'бизнес', 'власть интерфейса',
   'доброта как сервис', 'фандрайзинг', 'партнёрство или подряд', 'гранты',
   'выгорание', 'корпоративное волонтёрство'
@@ -64,16 +64,11 @@ const tickerText = topics.join(' • ') + ' • ';
     </div>
   </div>
   <aside class="panel">
-    <h2>Стиль дня</h2>
-    <div class="quote">«Добро не исчезает. Оно просто проходит модерацию»</div>
+    <h2>Тема дня</h2>
+    <div class="quote">{homeTopic?.title ?? 'Из чата — в очерк'}</div>
+    <p class="topic-question">{homeTopic?.question ?? essays[0]?.data.excerpt}</p>
     <div class="switch">
-      <button>ирония</button>
-      <button>сцена</button>
-      <button>Пушкин</button>
-      <button>Толстой</button>
-      <button>Ильф и Петров</button>
-      <button>разбор</button>
-      <button>сатира</button>
+      {topics.map(topic => <span>{topic}</span>)}
     </div>
   </aside>
 </section>
