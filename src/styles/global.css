@@ -64,6 +64,15 @@ img { max-width: 100%; }
 }
 .logo i { font-family: var(--serif); font-weight: 400; }
 
+/* Убираем системную рамку после клика, но сохраняем заметный фокус для клавиатуры. */
+a:focus { outline: none; }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #386f9d;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 .menu { display: flex; gap: 8px; flex-wrap: wrap; }
 .menu a {
   padding: 9px 13px;
@@ -237,18 +246,51 @@ img { max-width: 100%; }
   line-height: 1.2;
   margin: 0 0 22px;
 }
+.topic-question {
+  margin: -8px 0 22px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.45;
+}
+.quote a { text-decoration: none; }
+.quote a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
 .switch { display: flex; gap: 8px; flex-wrap: wrap; }
-.switch button {
+.switch button,
+.switch span {
   border: 1px solid var(--line);
   background: #fff;
   border-radius: 999px;
   padding: 8px 14px;
   font-size: 13px;
-  cursor: pointer;
   font-family: var(--sans);
   color: var(--ink-soft);
 }
+.switch button { cursor: pointer; }
 .switch button:hover { border-color: var(--ink-soft); }
+.weekly-essays { margin-top: 22px; }
+.weekly-essays__label {
+  margin-bottom: 7px;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.weekly-essays a, .all-topics {
+  display: block;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  text-decoration: none;
+}
+.weekly-essays a:hover, .all-topics:hover { text-decoration: underline; }
+.weekly-essays a span { color: var(--accent); }
+.all-topics {
+  margin-top: 20px;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 14px;
+}
 
 /* ===== How it works ===== */
 .steps {
@@ -398,6 +440,76 @@ img { max-width: 100%; }
   margin: 1.5em 0;
 }
 
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 18px 0 34px;
+}
+
+.team-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.55);
+}
+
+.team-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.team-copy {
+  padding: 18px 20px 20px;
+}
+
+.team-copy strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 24px;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.team-copy span {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.thanks-list {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0 30px;
+}
+
+.thanks-card {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.55);
+}
+
+.thanks-card strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.thanks-card span {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
 /* ===== Other voices ===== */
 .other-voices {
   margin-top: 56px;
@@ -409,6 +521,72 @@ img { max-width: 100%; }
   color: var(--ink-faint); margin: 0 0 20px; font-weight: 800;
 }
 .other-voices .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.issue-hero {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  max-width: 820px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(120deg, rgba(255,255,255,.9), rgba(247,242,235,.75));
+  text-decoration: none;
+}
+.issue-hero h3 { margin: 10px 0 8px; font-family: var(--serif); font-size: clamp(28px, 4vw, 42px); line-height: 1; }
+.issue-hero p { max-width: 600px; margin: 0; color: var(--ink-soft); font-size: 17px; line-height: 1.45; }
+.issue-hero .btn { white-space: nowrap; }
+.issue-follow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 56px;
+  padding: 30px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #fff;
+}
+.issue-follow .style-tag { color: #ffd7c2; }
+.issue-follow h2 { margin: 8px 0; font-size: clamp(24px, 3vw, 34px); }
+.issue-follow p { margin: 0; color: #c9c2b8; }
+.issue-follow__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.issue-follow .btn.secondary { background: transparent; border-color: #7d756d; color: #fff; }
+.essay-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 42px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+}
+.essay-actions a { color: var(--ink-soft); }
+.essay-actions a:first-child { color: var(--ink); font-weight: 700; }
+
+/* ===== Audio player ===== */
+.audio-card {
+  margin: 28px auto 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  max-width: 720px;
+}
+.audio-card__label {
+  margin-bottom: 12px;
+  color: var(--ink-faint);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.audio-card audio { width: 100%; display: block; }
+.audio-card__meta {
+  margin-top: 10px;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
 
 /* ===== Topic page ===== */
 .topic-meta {
@@ -450,6 +628,30 @@ img { max-width: 100%; }
   font-size: 14px;
 }
 
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo {
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.footer-logo-link {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.footer-org {
+  font-size: 12px;
+  color: var(--ink-faint);
+  opacity: 0.8;
+}
+
+.footer-org a { color: inherit; }
+
 .section-title {
   font-size: 14px;
   text-transform: uppercase;
@@ -471,6 +673,8 @@ img { max-width: 100%; }
   .topic-meta { grid-template-columns: repeat(2, 1fr); }
   .essay { flex-wrap: wrap; }
   .essay .style { min-width: 100%; }
+  .team-grid { grid-template-columns: 1fr; }
+  .issue-hero, .issue-follow { align-items: flex-start; flex-direction: column; }
 }
 
 @media (max-width: 560px) {
