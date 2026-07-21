@@ -16,11 +16,6 @@ const essays = defineCollection({
     optic: z.enum(OPTIC_KEYS).optional(),
     audioUrl: z.string().optional(),
     durationSec: z.number().int().positive().optional(),
-    homeTopic: z.object({
-      title: z.string(),
-      question: z.string(),
-      tags: z.array(z.string()).min(1),
-    }).optional(),
   }),
 });
 
@@ -31,9 +26,12 @@ const topics = defineCollection({
     title: z.string(),
     summary: z.string(),
     whyChosen: z.string(),
-    messageCount: z.number(),
-    participantCount: z.number(),
+    messageCount: z.number().optional(),
+    participantCount: z.number().optional(),
     periodEnd: z.string(),
+    question: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
     conflictLines: z.array(z.object({
       side: z.string(),
       position: z.string(),

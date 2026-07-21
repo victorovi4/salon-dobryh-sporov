@@ -5,15 +5,15 @@ import Base from '../layouts/Base.astro';
 const essays = (await getCollection('essays')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
+const allTopics = await getCollection('topics');
+const topicOfWeek = allTopics.find(topic => topic.data.featured) ?? allTopics[0];
+const weeklyEssays = topicOfWeek
+  ? essays.filter(essay => essay.data.topic === topicOfWeek.id)
+  : [];
 
 const recent = essays.slice(0, 7);
-const homeTopic = essays[0]?.data.homeTopic;
-const topics = homeTopic?.tags ?? [
-  'платформы', 'доноры', 'фонды', 'бизнес', 'власть интерфейса',
-  'доброта как сервис', 'фандрайзинг', 'партнёрство или подряд', 'гранты',
-  'выгорание', 'корпоративное волонтёрство'
-];
-const tickerText = topics.join(' • ') + ' • ';
+const topicTags = [...new Set(allTopics.flatMap(topic => topic.data.tags))];
+const tickerText = topicTags.join(' • ') + ' • ';
 ---
 
 <Base title="Причинили" description="Из чата — в очерк. Медиа, где живые споры НКО-сектора превращаются в литературные очерки и деловой разбор.">
@@ -64,12 +64,23 @@ const tickerText = topics.join(' • ') + ' • ';
     </div>
   </div>
   <aside class="panel">
-    <h2>Тема дня</h2>
-    <div class="quote">{homeTopic?.title ?? 'Из чата — в очерк'}</div>
-    <p class="topic-question">{homeTopic?.question ?? essays[0]?.data.excerpt}</p>
-    <div class="switch">
-      {topics.map(topic => <span>{topic}</span>)}
-    </div>
+    <h2>Тема недели</h2>
+    {topicOfWeek ? (
+      <>
+        <div class="quote"><a href={`/topics/${topicOfWeek.id}/`}>{topicOfWeek.data.title}</a></div>
+        <p class="topic-question">{topicOfWeek.data.question ?? topicOfWeek.data.summary}</p>
+        <div class="switch">
+          {topicOfWeek.data.tags.map(tag => <span>{tag}</span>)}
+        </div>
+        <div class="weekly-essays">
+          <div class="weekly-essays__label">Очерки этого выпуска</div>
+          {weeklyEssays.map(essay => (
+            <a href={`/essays/${essay.id}/`}>{essay.data.title} <span>→</span></a>
+          ))}
+        </div>
+      </>
+    ) : <p class="topic-question">Выпуск готовится.</p>}
+    <a class="all-topics" href="/topics/">Все выпуски →</a>
   </aside>
 </section>
 

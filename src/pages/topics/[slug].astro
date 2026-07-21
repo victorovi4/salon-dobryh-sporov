@@ -25,8 +25,8 @@ const essays = (await getCollection('essays'))
   </div>
 
   <div class="topic-meta">
-    <div class="stat"><span class="num">{topic.data.messageCount}</span><span class="lbl">сообщений в чате</span></div>
-    <div class="stat"><span class="num">{topic.data.participantCount}</span><span class="lbl">участников</span></div>
+    {topic.data.messageCount && <div class="stat"><span class="num">{topic.data.messageCount}</span><span class="lbl">сообщений в чате</span></div>}
+    {topic.data.participantCount && <div class="stat"><span class="num">{topic.data.participantCount}</span><span class="lbl">участников</span></div>}
     <div class="stat"><span class="num">{essays.length}</span><span class="lbl">очерков в выпуске</span></div>
     <div class="stat"><span class="num">{topic.data.periodEnd}</span><span class="lbl">окончание обсуждения</span></div>
   </div>

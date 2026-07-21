@@ -252,6 +252,8 @@ button:focus-visible {
   font-size: 16px;
   line-height: 1.45;
 }
+.quote a { text-decoration: none; }
+.quote a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
 .switch { display: flex; gap: 8px; flex-wrap: wrap; }
 .switch button,
 .switch span {
@@ -265,6 +267,30 @@ button:focus-visible {
 }
 .switch button { cursor: pointer; }
 .switch button:hover { border-color: var(--ink-soft); }
+.weekly-essays { margin-top: 22px; }
+.weekly-essays__label {
+  margin-bottom: 7px;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.weekly-essays a, .all-topics {
+  display: block;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  text-decoration: none;
+}
+.weekly-essays a:hover, .all-topics:hover { text-decoration: underline; }
+.weekly-essays a span { color: var(--accent); }
+.all-topics {
+  margin-top: 20px;
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 14px;
+}
 
 /* ===== How it works ===== */
 .steps {
