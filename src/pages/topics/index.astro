@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 
-const topics = await getCollection('topics');
+const topics = (await getCollection('topics')).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
 ---
 
 <Base title="Выпуски — Причинили" description="Темы и выпуски «Причинили».">
@@ -14,7 +14,7 @@ const topics = await getCollection('topics');
   <div class="grid">
     {topics.map(topic => (
       <a class="card" href={`/topics/${topic.id}/`}>
-        <div class="style-tag">{topic.data.messageCount} сообщений · {topic.data.participantCount} участников</div>
+        <div class="style-tag">{topic.data.featured ? 'тема недели' : topic.data.messageCount ? `${topic.data.messageCount} сообщений · ${topic.data.participantCount} участников` : 'архивный выпуск'}</div>
         <h3>{topic.data.title}</h3>
         <p class="excerpt">{topic.data.summary}</p>
         <div class="meta"><span class="more">Читать выпуск →</span></div>

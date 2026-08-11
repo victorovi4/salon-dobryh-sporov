@@ -5,15 +5,15 @@ import Base from '../layouts/Base.astro';
 const essays = (await getCollection('essays')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
+const allTopics = await getCollection('topics');
+const topicOfWeek = allTopics.find(topic => topic.data.featured) ?? allTopics[0];
+const weeklyEssays = topicOfWeek
+  ? essays.filter(essay => essay.data.topic === topicOfWeek.id)
+  : [];
 
 const recent = essays.slice(0, 7);
-
-const topics = [
-  'платформы', 'доноры', 'фонды', 'бизнес', 'власть интерфейса',
-  'доброта как сервис', 'фандрайзинг', 'партнёрство или подряд', 'гранты',
-  'выгорание', 'корпоративное волонтёрство'
-];
-const tickerText = topics.join(' • ') + ' • ';
+const topicTags = [...new Set(allTopics.flatMap(topic => topic.data.tags))];
+const tickerText = topicTags.join(' • ') + ' • ';
 ---
 
 <Base title="Причинили" description="Из чата — в очерк. Медиа, где живые споры НКО-сектора превращаются в литературные очерки и деловой разбор.">
@@ -24,7 +24,7 @@ const tickerText = topics.join(' • ') + ' • ';
     <p class="lead">Медиа, где одна проблематика из живого лога становится семью авторскими голосами: литературными очерками и деловым разбором.</p>
     <div class="cta">
       <a href="/essays/" class="btn primary">Читать подборку</a>
-      <a href="/styles/" class="btn secondary">Смотреть оптики</a>
+      <a href="/about/" class="btn secondary">О проекте</a>
     </div>
   </div>
   <div class="stage">
@@ -64,17 +64,23 @@ const tickerText = topics.join(' • ') + ' • ';
     </div>
   </div>
   <aside class="panel">
-    <h2>Стиль дня</h2>
-    <div class="quote">«Добро не исчезает. Оно просто проходит модерацию»</div>
-    <div class="switch">
-      <button>ирония</button>
-      <button>сцена</button>
-      <button>Пушкин</button>
-      <button>Толстой</button>
-      <button>Ильф и Петров</button>
-      <button>разбор</button>
-      <button>сатира</button>
-    </div>
+    <h2>Тема недели</h2>
+    {topicOfWeek ? (
+      <>
+        <div class="quote"><a href={`/topics/${topicOfWeek.id}/`}>{topicOfWeek.data.title}</a></div>
+        <p class="topic-question">{topicOfWeek.data.question ?? topicOfWeek.data.summary}</p>
+        <div class="switch">
+          {topicOfWeek.data.tags.map(tag => <span>{tag}</span>)}
+        </div>
+        <div class="weekly-essays">
+          <div class="weekly-essays__label">Очерки этого выпуска</div>
+          {weeklyEssays.map(essay => (
+            <a href={`/essays/${essay.id}/`}>{essay.data.title} <span>→</span></a>
+          ))}
+        </div>
+      </>
+    ) : <p class="topic-question">Выпуск готовится.</p>}
+    <a class="all-topics" href="/topics/">Все выпуски →</a>
   </aside>
 </section>
 
@@ -82,9 +88,9 @@ const tickerText = topics.join(' • ') + ' • ';
   <h2 class="section-title">Как это работает</h2>
   <div class="steps">
     <div class="step"><div class="num">01</div><div class="t">Чат обсуждает</div></div>
-    <div class="step"><div class="num">02</div><div class="t">AI-редактор берёт живой лог</div></div>
-    <div class="step"><div class="num">03</div><div class="t">Каждый голос ищет свою линию</div></div>
-    <div class="step"><div class="num">04</div><div class="t">Пишет не пересказ, а авторское чтение</div></div>
+    <div class="step"><div class="num">02</div><div class="t">Редакция выбирает конфликт</div></div>
+    <div class="step"><div class="num">03</div><div class="t">Материал обезличивается</div></div>
+    <div class="step"><div class="num">04</div><div class="t">Рождается самостоятельный очерк</div></div>
     <div class="step"><div class="num">05</div><div class="t">Публикует на сайт и в Telegram</div></div>
   </div>
 </section>
@@ -92,6 +98,6 @@ const tickerText = topics.join(' • ') + ' • ';
 <section class="subscribe">
   <h3>Новый очерк — каждый день</h3>
   <p>Подпишитесь на Telegram-канал: темы НКО-сектора, которых вы не найдёте в отчётах.</p>
-  <a href="https://t.me/" target="_blank" rel="noopener" class="btn primary" style="background:#ffd7c2;color:#24201c">Подписаться в Telegram</a>
+  <a href="https://t.me/prichinili" target="_blank" rel="noopener" class="btn primary" style="background:#ffd7c2;color:#24201c">Подписаться в Telegram</a>
 </section>
 </Base>
